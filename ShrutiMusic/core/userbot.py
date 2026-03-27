@@ -1,7 +1,6 @@
 from pyrogram import Client
 import asyncio
 import config
-
 from ..logging import LOGGER
 
 assistants = []
@@ -12,7 +11,6 @@ ASS_STRINGS = [
     config.STRING1, config.STRING2, config.STRING3,
     config.STRING4, config.STRING5
 ]
-
 
 class Userbot(Client):
     def __init__(self):
@@ -27,11 +25,29 @@ class Userbot(Client):
             for i in range(5)
         ]
 
+    @property
+    def one(self):
+        return self.clients[0]
+
+    @property
+    def two(self):
+        return self.clients[1]
+
+    @property
+    def three(self):
+        return self.clients[2]
+
+    @property
+    def four(self):
+        return self.clients[3]
+
+    @property
+    def five(self):
+        return self.clients[4]
+
     async def start(self):
         LOGGER(__name__).info("Starting Assistants...")
-
         log_names = ["One", "Two", "Three", "Four", "Five"]
-
         for i, (string, client) in enumerate(zip(ASS_STRINGS, self.clients)):
             if not string:
                 continue
